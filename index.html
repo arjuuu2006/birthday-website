@@ -7,10 +7,17 @@
 <body style="text-align: center; font-family: Arial, sans-serif; background-color: #fff0f5;">
 
   <!-- Music -->
- <audio controls autoplay loop>
-  <source src="happy-birthday.mp3" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
+ <!-- Cute Play Button for Music -->
+<div style="margin-top: 20px;">
+  <button onclick="document.getElementById('bday-audio').play()" style="padding: 10px 20px; font-size: 1.1em; border: none; border-radius: 10px; background-color: #ff69b4; color: white; cursor: pointer; box-shadow: 2px 2px 8px rgba(0,0,0,0.2);">
+    💖 Tap to Play Song
+  </button>
+  <audio id="bday-audio" loop>
+    <source src="happy-birthday.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
 
 
   <h1 style="color: #ff1493;">Happy Birthday, My Love 💖</h1>
