@@ -1,17 +1,42 @@
 body {
-  background: #fff0f6;
+  background: linear-gradient(to bottom right, #fff0f6, #ffe0ec);
   font-family: 'Arial', sans-serif;
   text-align: center;
-  padding: 50px;
+  padding: 40px;
   color: #333;
 }
 
 h1 {
-  color: #ff3366;
+  color: #ff1493;
   font-size: 3em;
+  text-shadow: 2px 2px 5px rgba(255, 20, 147, 0.2);
+}
+
+h2 {
+  color: #cc0066;
+  font-size: 2em;
+  margin-top: 40px;
 }
 
 p {
   font-size: 1.2em;
   margin-top: 20px;
+  line-height: 1.6;
+}
+
+ul {
+  text-align: left;
+  margin-top: 20px;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+ul li::before {
+  content: "💖 ";
+}
+
+img {
+  border-radius: 15px;
+  margin: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
