@@ -3,63 +3,91 @@
 <head>
   <title>Happy Birthday ❤️</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .section {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+  </style>
 </head>
 <body style="text-align: center; font-family: Arial, sans-serif; background-color: #fff0f5;">
 
-  <!-- Music -->
- <!-- Cute Play Button for Music -->
-<div style="margin-top: 20px;">
-  <button onclick="document.getElementById('bday-audio').play()" style="padding: 10px 20px; font-size: 1.1em; border: none; border-radius: 10px; background-color: #ff69b4; color: white; cursor: pointer; box-shadow: 2px 2px 8px rgba(0,0,0,0.2);">
-    💖 Tap to Play Song
-  </button>
+  <!-- Music Button -->
+  <button onclick="document.getElementById('bday-audio').play()">💖 Tap to Play Song</button>
   <audio id="bday-audio" loop>
     <source src="happy-birthday.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
   </audio>
-</div>
 
+  <!-- Section 1: Title -->
+  <div class="section active" id="section1">
+    <h1 style="color: #ff1493;">Happy Birthday, My Love 💖</h1>
+    <p>I made this little website just for you — because you deserve all the magic! ✨</p>
+    <button onclick="nextSection('section2')">Next</button>
+  </div>
 
+  <!-- Section 2: Images -->
+  <div class="section" id="section2">
+    <img src="her.jpg" width="300" style="margin: 20px; border-radius: 12px;">
+    <img src="her2.jpg" width="300" style="margin: 20px; border-radius: 12px;">
+    <img src="her3.jpg" width="300" style="margin: 20px; border-radius: 12px;">
+    <img src="her4.JPG" width="300" style="margin: 20px; border-radius: 12px;">
+    <button onclick="nextSection('section3')">Next</button>
+  </div>
 
-  <h1 style="color: #ff1493;">Happy Birthday, My Love 💖</h1>
-  <p>I made this little website just for you — because you deserve all the magic! ✨</p>
-
-  <!-- Images -->
-  <img src="her.jpg" width="300" style="margin: 20px; border-radius: 12px;">
-  <img src="her2.jpg" width="300" style="margin: 20px; border-radius: 12px;">
-  <img src="her3.jpg" width="300" style="margin: 20px; border-radius: 12px;">
-  <img src="her4.jpg" width="300" style="margin: 20px; border-radius: 12px;">
-
-  <!-- Love Letter -->
-  <div style="margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+  <!-- Section 3: Love Letter -->
+  <div class="section" id="section3">
     <h2 style="color:#ff3366;">A Little Note for You ❤️</h2>
-    <p style="font-size: 1.1em; line-height: 1.6;">
-      From the moment we met, my world has become brighter and my heart fuller.  
-      You bring joy, laughter, and love into every day of my life.  
-      This little website is just a small surprise to say how grateful I am to have you.  
-      Happy Birthday, my love — I can't wait to spend many more birthdays by your side. 💫  
-      <br><br>
-      Yours forever,  
-      <br>
+    <p style="font-size: 1.1em; line-height: 1.6; max-width: 600px; margin: auto;">
+      From the moment we met, my world has become brighter and my heart fuller.<br>
+      You bring joy, laughter, and love into every day of my life.<br>
+      This little website is just a small surprise to say how grateful I am to have you.<br>
+      Happy Birthday, my love — I can't wait to spend many more birthdays by your side. 💫<br><br>
+      Yours forever,<br>
       Arjun 💌
     </p>
+    <button onclick="nextSection('section4')">Next</button>
   </div>
 
-  <!-- Gift Animation -->
-  <div style="margin-top: 30px;">
+  <!-- Section 4: Gift Animation -->
+  <div class="section" id="section4">
     <img src="gift.gif" width="200" alt="Surprise Gift" style="border-radius: 20px;">
     <p style="font-size: 1.2em;">Tap this gift in your heart 🎁</p>
+    <button onclick="nextSection('section5')">Next</button>
   </div>
 
-  <!-- Fun Questions -->
-  <div style="margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+  <!-- Section 5: Fun Questions -->
+  <div class="section" id="section5">
     <h2 style="color: #cc0066;">Some Questions Just for You 💭</h2>
-    <ul style="text-align: left; font-size: 1.1em; line-height: 1.6; color: #333;">
+    <ul style="text-align: left; font-size: 1.1em; line-height: 1.6; color: #333; max-width: 600px; margin: auto;">
       <li>💕 When did you first realize you liked me?</li>
       <li>🌹 What’s your favorite moment we've shared?</li>
       <li>🎶 Which song reminds you of us?</li>
       <li>🎨 If you could paint one memory with me, which one would it be?</li>
     </ul>
+    <p style="margin-top: 30px; font-size: 1.2em;">🎂 Thank you for being you. Happy Birthday again, my forever person. 💕</p>
   </div>
+
+  <script>
+    function nextSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
