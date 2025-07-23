@@ -2,194 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Babe 💖</title>
+  <title>Happy Birthday ❤️</title>
   <style>
     body {
-      background: #fff0f6;
+      margin: 0;
       font-family: 'Arial', sans-serif;
-      text-align: center;
-      padding: 50px;
-      color: #333;
+      background-color: #fff0f5;
+      overflow-x: hidden;
     }
-    h1 {
-      color: #ff3366;
-      font-size: 3em;
-    }
-    .slide {
+    .section {
       display: none;
-      animation: fadeIn 1.5s ease-in-out;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100vh;
+      padding: 20px;
     }
-    .active {
-      display: block;
+    .section.active {
+      display: flex;
+      animation: fadeIn 1s ease-in-out;
     }
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .button-nav {
-      margin-top: 20px;
-    }
+    h1, h2 { color: #ff1493; }
+    p { font-size: 1.2em; }
     button {
-      padding: 10px 20px;
-      font-size: 1em;
+      background-color: #ff66b2;
       border: none;
-      background: #ff99cc;
-      border-radius: 10px;
-      cursor: pointer;
+      padding: 15px 30px;
       margin: 10px;
+      color: white;
+      font-size: 1.2em;
+      border-radius: 12px;
+      cursor: pointer;
     }
-    #gift-img {
-      width: 200px;
-      animation: bounce 1s infinite alternate;
-    }
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to { transform: translateY(-10px); }
-    }
-    .hearts {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: -1;
+    .gift-container {
+      position: relative;
     }
     .heart {
       position: absolute;
-      color: red;
-      animation: fall 4s linear infinite;
-      font-size: 24px;
+      width: 20px;
+      height: 20px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Love_Heart_SVG.svg/2048px-Love_Heart_SVG.svg.png') no-repeat center/cover;
+      animation: fall 3s linear infinite;
     }
     @keyframes fall {
-      0% { top: -10%; opacity: 0; }
-      30% { opacity: 1; }
-      100% { top: 110%; opacity: 0; }
-    }
-    .question {
-      margin: 20px 0;
+      0% { top: -20px; opacity: 1; }
+      100% { top: 100%; opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <audio autoplay loop id="bday-audio">
-    <source src="happy-birthday.mp3" type="audio/mp3">
-  </audio>
-  <button onclick="document.getElementById('bday-audio').play()">💖 Tap to Play Song</button>
+<audio id="bday-audio" autoplay loop>
+  <source src="happy-birthday.mp3" type="audio/mp3">
+</audio>
 
-  <div id="slides">
-    <!-- Slide 1: Birthday Wish -->
-    <div class="slide active">
-      <h1>🎉 Happy Birthday Babe! 🎉</h1>
-      <p>Today is all about you. You're my sunshine! ☀️</p>
-    </div>
-
-    <!-- Slide 2: Images shown one by one -->
-    <div class="slide">
-      <h2>Our Beautiful Moments 💕</h2>
-      <div id="image-container"></div>
-    </div>
-
-    <!-- Slide 3: Gift with hearts -->
-    <div class="slide">
-      <h2>Your Surprise Gift 🎁</h2>
-      <img id="gift-img" src="gift.gif" alt="Gift">
-      <div class="hearts" id="heart-container"></div>
-    </div>
-
-    <!-- Slide 4: Love Letter -->
-    <div class="slide">
-      <h2>A Small Letter from Me ✍️</h2>
-      <p>From the day we met, you’ve made my life more beautiful every single moment. Thank you for being you. I love you endlessly. 💖</p>
-    </div>
-
-    <!-- Slide 5: Cute Questions -->
-    <div class="slide">
-      <h2>Answer These Cute Questions! 😘</h2>
-      <div class="question">1. What is your favorite memory with me?</div>
-      <div class="question">2. What would be your dream vacation with me?</div>
-      <div class="question">3. One thing you love most about us?</div>
-    </div>
+<div id="section1" class="section active">
+  <h1>Happy Birthday, My Love 💖</h1>
+  <p>I made this little website just for you — because you deserve all the magic! ✨</p>
+  <div>
+    <button onclick="nextSection()">Next</button>
   </div>
+</div>
 
-  <div class="button-nav">
-    <button onclick="prevSlide()">⬅️ Back</button>
-    <button onclick="nextSlide()">Next ➡️</button>
+<div id="section2" class="section">
+  <img id="image1" src="her1.JPG" width="250" style="border-radius: 12px; display: none;">
+  <img id="image2" src="her2.jpg" width="250" style="border-radius: 12px; display: none;">
+  <img id="image3" src="her3.jpg" width="250" style="border-radius: 12px; display: none;">
+  <img id="image4" src="her4.jpg" width="250" style="border-radius: 12px; display: none;">
+  <div>
+    <button onclick="prevSection()">Back</button>
+    <button onclick="nextSection()">Next</button>
   </div>
+</div>
 
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0;
+<div id="section3" class="section">
+  <div class="gift-container">
+    <img src="gift.gif" width="300" style="border-radius: 20px;">
+    <p style="font-size: 1.2em;">Tap this gift in your heart 🎁</p>
+  </div>
+  <div>
+    <button onclick="prevSection()">Back</button>
+    <button onclick="nextSection()">Next</button>
+  </div>
+</div>
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) slide.classList.add('active');
-      });
+<div id="section4" class="section">
+  <h2 style="color:#ff3366;">A Little Note for You ❤️</h2>
+  <p style="max-width: 600px; line-height: 1.6;">
+    From the moment we met, my world has become brighter and my heart fuller.<br>
+    You bring joy, laughter, and love into every day of my life.<br>
+    This little website is just a small surprise to say how grateful I am to have you.<br>
+    Happy Birthday, my love — I can't wait to spend many more birthdays by your side. 💫<br><br>
+    Yours forever,<br>
+    Arjun 💌
+  </p>
+  <div>
+    <button onclick="prevSection()">Back</button>
+    <button onclick="nextSection()">Next</button>
+  </div>
+</div>
 
-      // trigger hearts only on gift page
-      if (index === 2) {
-        showHearts();
-      }
+<div id="section5" class="section">
+  <h2 style="color: #cc0066;">Some Questions Just for You 💭</h2>
+  <ul style="text-align: left; max-width: 600px; font-size: 1.1em; line-height: 1.6;">
+    <li>💕 When did you first realize you liked me?</li>
+    <li>🌹 What’s your favorite moment we've shared?</li>
+    <li>🎶 Which song reminds you of us?</li>
+    <li>🎨 If you could paint one memory with me, which one would it be?</li>
+  </ul>
+  <button onclick="prevSection()">Back</button>
+</div>
+
+<script>
+let current = 1;
+function nextSection() {
+  document.getElementById(`section${current}`).classList.remove('active');
+  current++;
+  document.getElementById(`section${current}`).classList.add('active');
+}
+function prevSection() {
+  document.getElementById(`section${current}`).classList.remove('active');
+  current--;
+  document.getElementById(`section${current}`).classList.add('active');
+}
+
+// Auto reveal images
+window.addEventListener("DOMContentLoaded", () => {
+  const images = ["image1", "image2", "image3", "image4"];
+  let index = 0;
+  const revealNext = () => {
+    if (index < images.length) {
+      document.getElementById(images[index]).style.display = 'block';
+      index++;
+      setTimeout(revealNext, 2000);
     }
+  };
+  document.getElementById("section2").addEventListener("transitionstart", revealNext);
+});
 
-    function nextSlide() {
-      if (currentSlide < slides.length - 1) {
-        currentSlide++;
-        showSlide(currentSlide);
-      }
-    }
-
-    function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-        showSlide(currentSlide);
-      }
-    }
-
-    // For the image reveal slide
-    const imagePaths = ["her.jpg", "her2.jpg", "her3.jpg", "her4.JPG"];
-    const container = document.getElementById("image-container");
-    let imgIndex = 0;
-
-    function revealImage() {
-      if (imgIndex < imagePaths.length) {
-        const img = document.createElement("img");
-        img.src = imagePaths[imgIndex];
-        img.style.width = "250px";
-        img.style.margin = "10px";
-        img.style.borderRadius = "12px";
-        img.style.transition = "transform 0.4s ease-in-out";
-        container.appendChild(img);
-        imgIndex++;
-        setTimeout(revealImage, 2000);
-      }
-    }
-
-    // Trigger auto image reveal only when slide 2 is shown
-    const observer = new MutationObserver(() => {
-      if (slides[1].classList.contains("active") && imgIndex === 0) {
-        revealImage();
-      }
-    });
-    observer.observe(document.getElementById("slides"), { childList: true, subtree: true, attributes: true });
-
-    // Hearts for gift page
-    function showHearts() {
-      const heartContainer = document.getElementById('heart-container');
-      heartContainer.innerHTML = "";
-      for (let i = 0; i < 30; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.animationDelay = Math.random() * 4 + 's';
-        heart.innerText = '❤️';
-        heartContainer.appendChild(heart);
-      }
-    }
-  </script>
+// Falling hearts
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  document.querySelector('.gift-container').appendChild(heart);
+  setTimeout(() => heart.remove(), 3000);
+}
+setInterval(createHeart, 300);
+</script>
 
 </body>
 </html>
