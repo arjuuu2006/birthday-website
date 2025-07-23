@@ -1,160 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Happy Birthday ❤️</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
       background-color: #fff0f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
       overflow-x: hidden;
     }
     .section {
       display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      height: 100vh;
-      padding: 20px;
+      transition: opacity 1s;
     }
-    .section.active {
-      display: flex;
-      animation: fadeIn 1s ease-in-out;
+    .active {
+      display: block;
+      opacity: 1;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    h1, h2 { color: #ff1493; }
-    p { font-size: 1.2em; }
     button {
-      background-color: #ff66b2;
+      margin: 30px 10px 0;
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #ff69b4;
       border: none;
-      padding: 15px 30px;
-      margin: 10px;
-      color: white;
-      font-size: 1.2em;
       border-radius: 12px;
+      color: white;
       cursor: pointer;
     }
-    .gift-container {
-      position: relative;
+    button:hover {
+      background-color: #ff1493;
     }
     .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Love_Heart_SVG.svg/2048px-Love_Heart_SVG.svg.png') no-repeat center/cover;
-      animation: fall 3s linear infinite;
+      position: fixed;
+      top: -50px;
+      color: pink;
+      font-size: 24px;
+      animation: fall 5s linear infinite;
     }
     @keyframes fall {
-      0% { top: -20px; opacity: 1; }
-      100% { top: 100%; opacity: 0; }
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    .images img {
+      display: none;
+      margin: 20px;
+      border-radius: 12px;
+      width: 300px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .images img.visible {
+      display: inline-block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
 
-<audio id="bday-audio" autoplay loop>
-  <source src="happy-birthday.mp3" type="audio/mp3">
-</audio>
+  <!-- Music -->
+  <button onclick="document.getElementById('bday-audio').play()">💖 Tap to Play Song</button>
+  <audio id="bday-audio" autoplay loop>
+    <source src="happy-birthday.mp3" type="audio/mp3">
+  </audio>
 
-<div id="section1" class="section active">
-  <h1>Happy Birthday, My Love 💖</h1>
-  <p>I made this little website just for you — because you deserve all the magic! ✨</p>
-  <div>
-    <button onclick="nextSection()">Next</button>
+  <!-- Section 1: Title -->
+  <div class="section active" id="section1">
+    <h1 style="color: #ff1493;">Happy Birthday, My Love 💖</h1>
+    <p>I made this little website just for you — because you deserve all the magic! ✨</p>
+    <button onclick="nextSection('section2')">Next ➡️</button>
   </div>
-</div>
 
-<div id="section2" class="section">
-  <img id="image1" src="her1.JPG" width="250" style="border-radius: 12px; display: none;">
-  <img id="image2" src="her2.jpg" width="250" style="border-radius: 12px; display: none;">
-  <img id="image3" src="her3.jpg" width="250" style="border-radius: 12px; display: none;">
-  <img id="image4" src="her4.jpg" width="250" style="border-radius: 12px; display: none;">
-  <div>
-    <button onclick="prevSection()">Back</button>
-    <button onclick="nextSection()">Next</button>
+  <!-- Section 2: Auto Image Reveal -->
+  <div class="section" id="section2">
+    <h2 style="color:#ff3366;">Our Memories 📸</h2>
+    <div class="images">
+      <img src="her.jpg">
+      <img src="her2.jpg">
+      <img src="her3.jpg">
+      <img src="her4.jpg">
+    </div>
+    <button onclick="prevSection('section1')">⬅️ Back</button>
+    <button onclick="nextSection('section3')">Next ➡️</button>
   </div>
-</div>
 
-<div id="section3" class="section">
-  <div class="gift-container">
+  <!-- Section 3: Love Letter -->
+  <div class="section" id="section3">
+    <h2 style="color:#ff3366;">A Little Note for You ❤️</h2>
+    <p style="font-size: 1.1em; line-height: 1.6; max-width: 600px; margin: auto;">
+      From the moment we met, my world has become brighter and my heart fuller.<br>
+      You bring joy, laughter, and love into every day of my life.<br>
+      This little website is just a small surprise to say how grateful I am to have you.<br>
+      Happy Birthday, my love — I can't wait to spend many more birthdays by your side. 💫<br><br>
+      Yours forever,<br>
+      Arjun 💌
+    </p>
+    <button onclick="prevSection('section2')">⬅️ Back</button>
+    <button onclick="nextSection('section4')">Next ➡️</button>
+  </div>
+
+  <!-- Section 4: Gift -->
+  <div class="section" id="section4">
+    <h2 style="color:#cc0066;">Your Surprise Gift 🎁</h2>
     <img src="gift.gif" width="300" style="border-radius: 20px;">
-    <p style="font-size: 1.2em;">Tap this gift in your heart 🎁</p>
+    <p style="font-size: 1.2em;">Tap this gift in your heart 💝</p>
+    <button onclick="prevSection('section3')">⬅️ Back</button>
+    <button onclick="nextSection('section5')">Next ➡️</button>
   </div>
-  <div>
-    <button onclick="prevSection()">Back</button>
-    <button onclick="nextSection()">Next</button>
+
+  <!-- Section 5: Cute Questions -->
+  <div class="section" id="section5">
+    <h2 style="color: #cc0066;">Some Questions Just for You 💭</h2>
+    <ul style="text-align: left; font-size: 1.1em; line-height: 1.6; color: #333; max-width: 600px; margin: auto;">
+      <li>💕 When did you first realize you liked me?</li>
+      <li>🌹 What’s your favorite moment we've shared?</li>
+      <li>🎶 Which song reminds you of us?</li>
+      <li>🎨 If you could paint one memory with me, which one would it be?</li>
+    </ul>
+    <p style="margin-top: 30px; font-size: 1.2em;">🎂 Thank you for being you. Happy Birthday again, my forever person. 💕</p>
+    <button onclick="prevSection('section4')">⬅️ Back</button>
   </div>
-</div>
 
-<div id="section4" class="section">
-  <h2 style="color:#ff3366;">A Little Note for You ❤️</h2>
-  <p style="max-width: 600px; line-height: 1.6;">
-    From the moment we met, my world has become brighter and my heart fuller.<br>
-    You bring joy, laughter, and love into every day of my life.<br>
-    This little website is just a small surprise to say how grateful I am to have you.<br>
-    Happy Birthday, my love — I can't wait to spend many more birthdays by your side. 💫<br><br>
-    Yours forever,<br>
-    Arjun 💌
-  </p>
-  <div>
-    <button onclick="prevSection()">Back</button>
-    <button onclick="nextSection()">Next</button>
-  </div>
-</div>
-
-<div id="section5" class="section">
-  <h2 style="color: #cc0066;">Some Questions Just for You 💭</h2>
-  <ul style="text-align: left; max-width: 600px; font-size: 1.1em; line-height: 1.6;">
-    <li>💕 When did you first realize you liked me?</li>
-    <li>🌹 What’s your favorite moment we've shared?</li>
-    <li>🎶 Which song reminds you of us?</li>
-    <li>🎨 If you could paint one memory with me, which one would it be?</li>
-  </ul>
-  <button onclick="prevSection()">Back</button>
-</div>
-
-<script>
-let current = 1;
-function nextSection() {
-  document.getElementById(`section${current}`).classList.remove('active');
-  current++;
-  document.getElementById(`section${current}`).classList.add('active');
-}
-function prevSection() {
-  document.getElementById(`section${current}`).classList.remove('active');
-  current--;
-  document.getElementById(`section${current}`).classList.add('active');
-}
-
-// Auto reveal images
-window.addEventListener("DOMContentLoaded", () => {
-  const images = ["image1", "image2", "image3", "image4"];
-  let index = 0;
-  const revealNext = () => {
-    if (index < images.length) {
-      document.getElementById(images[index]).style.display = 'block';
-      index++;
-      setTimeout(revealNext, 2000);
+  <!-- Falling Hearts -->
+  <script>
+    const hearts = ["💖", "❤️", "💕", "💘", "💞"];
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
     }
-  };
-  document.getElementById("section2").addEventListener("transitionstart", revealNext);
-});
 
-// Falling hearts
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  document.querySelector('.gift-container').appendChild(heart);
-  setTimeout(() => heart.remove(), 3000);
-}
-setInterval(createHeart, 300);
-</script>
+    function showHeartsOnSection(sectionId) {
+      const interval = setInterval(createHeart, 500);
+      const observer = new MutationObserver(() => {
+        if (!document.getElementById(sectionId).classList.contains('active')) {
+          clearInterval(interval);
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.getElementById(sectionId), { attributes: true });
+    }
+
+    showHeartsOnSection('section4');
+
+    function nextSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      if (id === 'section2') startImageAnimation();
+    }
+
+    function prevSection(id) {
+      nextSection(id);
+    }
+
+    function startImageAnimation() {
+      const images = document.querySelectorAll('.images img');
+      images.forEach(img => img.classList.remove('visible'));
+      let index = 0;
+      const interval = setInterval(() => {
+        if (index < images.length) {
+          images[index].classList.add('visible');
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 2000);
+    }
+  </script>
 
 </body>
 </html>
