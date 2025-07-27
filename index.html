@@ -1,91 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday ❤️</title>
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      background-color: #fff0f5;
-      font-family: Arial, sans-serif;
-      text-align: center;
       margin: 0;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #fff0f5);
       overflow-x: hidden;
     }
+
     .section {
       display: none;
-      transition: opacity 1s;
+      padding: 40px 20px;
+      text-align: center;
     }
+
     .active {
       display: block;
-      opacity: 1;
     }
+
     button {
-      margin: 30px 10px 0;
+      margin-top: 20px;
       padding: 12px 24px;
-      font-size: 1em;
+      font-size: 1.1em;
       background-color: #ff69b4;
       border: none;
       border-radius: 12px;
       color: white;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
+
     button:hover {
       background-color: #ff1493;
     }
+
     .heart {
-      position: fixed;
+      position: absolute;
       top: -50px;
-      color: pink;
-      font-size: 24px;
-      animation: fall 5s linear infinite;
+      animation: fall 4s linear infinite;
     }
+
     @keyframes fall {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
     }
-    .images img {
-      display: none;
-      margin: 20px;
+
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    img {
       border-radius: 12px;
-      width: 300px;
-      animation: fadeIn 1s ease-in-out;
+      margin: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    .images img.visible {
-      display: inline-block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+
+    ul {
+      text-align: left;
+      max-width: 600px;
+      margin: auto;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #333;
+      padding: 0 20px;
     }
   </style>
 </head>
 <body>
+  <div class="floating-hearts" id="hearts-container"></div>
 
-  <!-- Music -->
   <button onclick="document.getElementById('bday-audio').play()">💖 Tap to Play Song</button>
-  <audio id="bday-audio" autoplay loop>
+  <audio id="bday-audio" loop>
     <source src="happy-birthday.mp3" type="audio/mp3">
   </audio>
 
-  <!-- Section 1: Title -->
+  <!-- Section 1: Intro -->
   <div class="section active" id="section1">
-    <h1 style="color: #ff1493;">Happy Birthday, My Love 💖</h1>
+    <h1 style="color: #ff1493; font-size: 2.4em;">Happy Birthday, My Love 💖</h1>
     <p>I made this little website just for you — because you deserve all the magic! ✨</p>
     <button onclick="nextSection('section2')">Next ➡️</button>
   </div>
 
-  <!-- Section 2: Auto Image Reveal -->
+  <!-- Section 2: Images -->
   <div class="section" id="section2">
-    <h2 style="color:#ff3366;">Our Memories 📸</h2>
-    <div class="images">
-      <img src="her.jpg">
-      <img src="her2.jpg">
-      <img src="her3.jpg">
-      <img src="her4.jpg">
-    </div>
-    <button onclick="prevSection('section1')">⬅️ Back</button>
+    <img id="img1" src="her.jpg" width="280" style="display:none;">
+    <img id="img2" src="her2.jpg" width="280" style="display:none;">
+    <img id="img3" src="her3.jpg" width="280" style="display:none;">
+    <img id="img4" src="her4.jpg" width="280" style="display:none;">
     <button onclick="nextSection('section3')">Next ➡️</button>
+    <button onclick="backSection('section1')">⬅️ Back</button>
   </div>
 
   <!-- Section 3: Love Letter -->
@@ -99,81 +119,69 @@
       Yours forever,<br>
       Arjun 💌
     </p>
-    <button onclick="prevSection('section2')">⬅️ Back</button>
     <button onclick="nextSection('section4')">Next ➡️</button>
+    <button onclick="backSection('section2')">⬅️ Back</button>
   </div>
 
   <!-- Section 4: Gift -->
   <div class="section" id="section4">
-    <h2 style="color:#cc0066;">Your Surprise Gift 🎁</h2>
-    <img src="gift.gif" width="300" style="border-radius: 20px;">
-    <p style="font-size: 1.2em;">Tap this gift in your heart 💝</p>
-    <button onclick="prevSection('section3')">⬅️ Back</button>
+    <img src="gift.gif" width="260" alt="Surprise Gift">
+    <p style="font-size: 1.2em;">Tap this gift in your heart 🎁</p>
     <button onclick="nextSection('section5')">Next ➡️</button>
+    <button onclick="backSection('section3')">⬅️ Back</button>
   </div>
 
-  <!-- Section 5: Cute Questions -->
+  <!-- Section 5: Questions -->
   <div class="section" id="section5">
     <h2 style="color: #cc0066;">Some Questions Just for You 💭</h2>
-    <ul style="text-align: left; font-size: 1.1em; line-height: 1.6; color: #333; max-width: 600px; margin: auto;">
+    <ul>
       <li>💕 When did you first realize you liked me?</li>
       <li>🌹 What’s your favorite moment we've shared?</li>
       <li>🎶 Which song reminds you of us?</li>
       <li>🎨 If you could paint one memory with me, which one would it be?</li>
     </ul>
     <p style="margin-top: 30px; font-size: 1.2em;">🎂 Thank you for being you. Happy Birthday again, my forever person. 💕</p>
-    <button onclick="prevSection('section4')">⬅️ Back</button>
+    <button onclick="backSection('section4')">⬅️ Back</button>
   </div>
 
-  <!-- Falling Hearts -->
   <script>
-    const hearts = ["💖", "❤️", "💕", "💘", "💞"];
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-      heart.style.left = Math.random() * 100 + "vw";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-
-    function showHeartsOnSection(sectionId) {
-      const interval = setInterval(createHeart, 500);
-      const observer = new MutationObserver(() => {
-        if (!document.getElementById(sectionId).classList.contains('active')) {
-          clearInterval(interval);
-          observer.disconnect();
-        }
-      });
-      observer.observe(document.getElementById(sectionId), { attributes: true });
-    }
-
-    showHeartsOnSection('section4');
-
     function nextSection(id) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      if (id === 'section2') startImageAnimation();
+      if (id === 'section2') revealImages();
+      if (id === 'section1' || id === 'section4') startHearts();
     }
 
-    function prevSection(id) {
-      nextSection(id);
+    function backSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      if (id === 'section1' || id === 'section4') startHearts();
     }
 
-    function startImageAnimation() {
-      const images = document.querySelectorAll('.images img');
-      images.forEach(img => img.classList.remove('visible'));
-      let index = 0;
-      const interval = setInterval(() => {
-        if (index < images.length) {
-          images[index].classList.add('visible');
-          index++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 2000);
+    function revealImages() {
+      let images = ['img1', 'img2', 'img3', 'img4'];
+      images.forEach((id, index) => {
+        setTimeout(() => {
+          document.getElementById(id).style.display = 'inline-block';
+        }, (index + 1) * 1000);
+      });
     }
+
+    function startHearts() {
+      const container = document.getElementById('hearts-container');
+      container.innerHTML = '';
+      for (let i = 0; i < 12; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        heart.innerText = '💖';
+        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        container.appendChild(heart);
+      }
+    }
+
+    startHearts();
   </script>
-
 </body>
 </html>
