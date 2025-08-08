@@ -3,185 +3,224 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday ❤️</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Happy Birthday Babe ❤️</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #ffe6f0, #fff0f5);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #ffe6f0;
       overflow-x: hidden;
     }
 
     .section {
       display: none;
-      padding: 40px 20px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
       text-align: center;
     }
 
-    .active {
-      display: block;
+    .section.active {
+      display: flex;
+    }
+
+    .buttons {
+      margin-top: 20px;
     }
 
     button {
-      margin-top: 20px;
       padding: 12px 24px;
-      font-size: 1.1em;
-      background-color: #ff69b4;
+      font-size: 18px;
       border: none;
       border-radius: 12px;
-      color: white;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      background-color: #ff66b2;
+      color: white;
+      margin: 10px;
+      min-width: 120px;
     }
 
     button:hover {
-      background-color: #ff1493;
+      background-color: #ff3399;
     }
 
-    .heart {
-      position: absolute;
-      top: -50px;
-      animation: fall 4s linear infinite;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-    }
-
-    .floating-hearts {
+    .falling-hearts {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
     }
 
-    img {
-      border-radius: 12px;
-      margin: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    .falling-hearts span {
+      position: absolute;
+      color: #ff6699;
+      font-size: 24px;
+      animation: fall 5s linear infinite;
     }
 
-    ul {
-      text-align: left;
-      max-width: 600px;
-      margin: auto;
-      font-size: 1.1em;
-      line-height: 1.6;
-      color: #333;
-      padding: 0 20px;
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    .image-gallery img {
+      max-width: 90vw;
+      max-height: 70vh;
+      margin: 10px 0;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <div class="floating-hearts" id="hearts-container"></div>
-
-  <button onclick="document.getElementById('bday-audio').play()">💖 Tap to Play Song</button>
-  <audio id="bday-audio" loop>
-    <source src="happy-birthday.mp3" type="audio/mp3">
+  <audio id="birthdaySong" autoplay loop>
+    <source src="music.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
   </audio>
 
-  <!-- Section 1: Intro -->
+  <div class="falling-hearts" id="heartsContainer"></div>
+
   <div class="section active" id="section1">
-    <h1 style="color: #ff1493; font-size: 2.4em;">Happy Birthday, My Love 💖</h1>
-    <p>I made this little website just for you — because you deserve all the magic! ✨</p>
-    <button onclick="nextSection('section2')">Next ➡️</button>
+    <h1>Hey Babe 💖</h1>
+    <p>I made this small website just for you. Hope it brings a smile to your beautiful face 🥹❤️</p>
+    <div class="buttons">
+      <button onclick="prevSection()">Back</button>
+      <button onclick="nextSection()">Next</button>
+    </div>
   </div>
 
-  <!-- Section 2: Images -->
   <div class="section" id="section2">
-    <img id="img1" src="her.jpg" width="280" style="display:none;">
-    <img id="img2" src="her2.jpg" width="280" style="display:none;">
-    <img id="img3" src="her3.jpg" width="280" style="display:none;">
-    <img id="img4" src="her4.jpg" width="280" style="display:none;">
-    <button onclick="nextSection('section3')">Next ➡️</button>
-    <button onclick="backSection('section1')">⬅️ Back</button>
+    <h2>Happy Birthday My Love 🎂🎉</h2>
+    <p>Every moment with you is a blessing. You deserve all the happiness in the world. 💝</p>
+    <div class="buttons">
+      <button onclick="prevSection()">Back</button>
+      <button onclick="nextSection()">Next</button>
+    </div>
   </div>
 
-  <!-- Section 3: Love Letter -->
   <div class="section" id="section3">
-    <h2 style="color:#ff3366;">A Little Note for You ❤️</h2>
-    <p style="font-size: 1.1em; line-height: 1.6; max-width: 600px; margin: auto;">
-      From the moment we met, my world has become brighter and my heart fuller.<br>
-      You bring joy, laughter, and love into every day of my life.<br>
-      This little website is just a small surprise to say how grateful I am to have you.<br>
-      Happy Birthday, my love — I can't wait to spend many more birthdays by your side. 💫<br><br>
-      Yours forever,<br>
-      Arjun 💌
-    </p>
-    <button onclick="nextSection('section4')">Next ➡️</button>
-    <button onclick="backSection('section2')">⬅️ Back</button>
+    <h2>Some Beautiful Memories 📸</h2>
+    <div class="image-gallery" id="gallery"></div>
+    <div class="buttons">
+      <button onclick="prevSection()">Back</button>
+      <button onclick="nextSection()">Next</button>
+    </div>
   </div>
 
-  <!-- Section 4: Gift -->
   <div class="section" id="section4">
-    <img src="gift.gif" width="260" alt="Surprise Gift">
-    <p style="font-size: 1.2em;">Tap this gift in your heart 🎁</p>
-    <button onclick="nextSection('section5')">Next ➡️</button>
-    <button onclick="backSection('section3')">⬅️ Back</button>
+    <h2>🎁 Your Gift</h2>
+    <img src="gift.gif" alt="Gift" style="max-width: 300px; border-radius: 12px;" />
+    <div class="buttons">
+      <button onclick="prevSection()">Back</button>
+      <button onclick="nextSection()">Next</button>
+    </div>
   </div>
 
-  <!-- Section 5: Questions -->
   <div class="section" id="section5">
-    <h2 style="color: #cc0066;">Some Questions Just for You 💭</h2>
+    <h2>My Love Letter to You 💌</h2>
+    <p>
+      From the moment we met, my world changed. You're my smile, my comfort,
+      and my everything. I promise to always love you, support you, and never
+      stop reminding you how special you are to me. 💗
+    </p>
+    <div class="buttons">
+      <button onclick="prevSection()">Back</button>
+      <button onclick="nextSection()">Next</button>
+    </div>
+  </div>
+
+  <div class="section" id="section6">
+    <h2>Some Cute Questions 😚</h2>
     <ul>
-      <li>💕 When did you first realize you liked me?</li>
-      <li>🌹 What’s your favorite moment we've shared?</li>
-      <li>🎶 Which song reminds you of us?</li>
-      <li>🎨 If you could paint one memory with me, which one would it be?</li>
+      <li>When did you first know I was special? 💭</li>
+      <li>What’s your favorite memory with me? 📸</li>
+      <li>Will you promise to be mine forever? 💍</li>
     </ul>
-    <p style="margin-top: 30px; font-size: 1.2em;">🎂 Thank you for being you. Happy Birthday again, my forever person. 💕</p>
-    <button onclick="backSection('section4')">⬅️ Back</button>
+    <div class="buttons">
+      <button onclick="prevSection()">Back</button>
+    </div>
   </div>
 
   <script>
-    function nextSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      if (id === 'section2') revealImages();
-      if (id === 'section1' || id === 'section4') startHearts();
-    }
+    const sections = document.querySelectorAll('.section');
+    let currentSection = 0;
 
-    function backSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      if (id === 'section1' || id === 'section4') startHearts();
-    }
-
-    function revealImages() {
-      let images = ['img1', 'img2', 'img3', 'img4'];
-      images.forEach((id, index) => {
-        setTimeout(() => {
-          document.getElementById(id).style.display = 'inline-block';
-        }, (index + 1) * 1000);
+    function showSection(index) {
+      sections.forEach((section, i) => {
+        section.classList.toggle('active', i === index);
       });
+
+      // Apply falling hearts only on section 1 and 4
+      document.getElementById("heartsContainer").style.display =
+        index === 0 || index === 3 ? "block" : "none";
     }
 
-    function startHearts() {
-      const container = document.getElementById('hearts-container');
-      container.innerHTML = '';
-      for (let i = 0; i < 12; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
-        heart.innerText = '💖';
-        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-        container.appendChild(heart);
+    function nextSection() {
+      if (currentSection < sections.length - 1) {
+        currentSection++;
+        showSection(currentSection);
       }
     }
 
-    startHearts();
+    function prevSection() {
+      if (currentSection > 0) {
+        currentSection--;
+        showSection(currentSection);
+      }
+    }
+
+    function spawnHearts() {
+      const container = document.getElementById("heartsContainer");
+      setInterval(() => {
+        const heart = document.createElement("span");
+        heart.innerText = "❤️";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.fontSize = 16 + Math.random() * 24 + "px";
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, 300);
+    }
+
+    function revealImages() {
+      const gallery = document.getElementById("gallery");
+      const images = [
+        "img1.jpg",
+        "img2.jpg",
+        "img3.jpg",
+        "img4.jpg"
+      ];
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < images.length) {
+          const img = document.createElement("img");
+          img.src = images[i];
+          gallery.appendChild(img);
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+
+    window.onload = function () {
+      showSection(currentSection);
+      spawnHearts();
+      revealImages();
+    };
   </script>
 </body>
 </html>
