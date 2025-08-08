@@ -1,226 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Babe ❤️</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background-color: #ffe6f0;
-      overflow-x: hidden;
-    }
-
-    .section {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .section.active {
-      display: flex;
-    }
-
-    .buttons {
-      margin-top: 20px;
-    }
-
-    button {
-      padding: 12px 24px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      background-color: #ff66b2;
-      color: white;
-      margin: 10px;
-      min-width: 120px;
-    }
-
-    button:hover {
-      background-color: #ff3399;
-    }
-
-    .falling-hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .falling-hearts span {
-      position: absolute;
-      color: #ff6699;
-      font-size: 24px;
-      animation: fall 5s linear infinite;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-    }
-
-    .image-gallery img {
-      max-width: 90vw;
-      max-height: 70vh;
-      margin: 10px 0;
-      border-radius: 16px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <audio id="birthdaySong" autoplay loop>
-    <source src="music.mp3" type="audio/mp3" />
-    Your browser does not support the audio element.
-  </audio>
 
-  <div class="falling-hearts" id="heartsContainer"></div>
+<div class="section active" id="section1">
+    <h1>Happy Birthday ❤️</h1>
+    <button class="next-btn">Next ➡️</button>
+</div>
 
-  <div class="section active" id="section1">
-    <h1>Hey Babe 💖</h1>
-    <p>I made this small website just for you. Hope it brings a smile to your beautiful face 🥹❤️</p>
-    <div class="buttons">
-      <button onclick="prevSection()">Back</button>
-      <button onclick="nextSection()">Next</button>
+<div class="section" id="section2">
+    <h2>Memories 📸</h2>
+    <img src="image1.jpg" alt="Memory 1">
+    <img src="image2.jpg" alt="Memory 2">
+    <img src="image3.jpg" alt="Memory 3">
+    <img src="image4.jpg" alt="Memory 4">
+    <div class="nav-btns">
+        <button class="back-btn">⬅️ Back</button>
+        <button class="next-btn">Next ➡️</button>
     </div>
-  </div>
+</div>
 
-  <div class="section" id="section2">
-    <h2>Happy Birthday My Love 🎂🎉</h2>
-    <p>Every moment with you is a blessing. You deserve all the happiness in the world. 💝</p>
-    <div class="buttons">
-      <button onclick="prevSection()">Back</button>
-      <button onclick="nextSection()">Next</button>
+<div class="section" id="section3">
+    <h2>Special Gift 🎁</h2>
+    <img src="gift.gif" class="gift-img" alt="Gift">
+    <div class="nav-btns">
+        <button class="back-btn">⬅️ Back</button>
+        <button class="next-btn">Next ➡️</button>
     </div>
-  </div>
+</div>
 
-  <div class="section" id="section3">
-    <h2>Some Beautiful Memories 📸</h2>
-    <div class="image-gallery" id="gallery"></div>
-    <div class="buttons">
-      <button onclick="prevSection()">Back</button>
-      <button onclick="nextSection()">Next</button>
+<div class="section" id="section4">
+    <h2>Love Letter 💌</h2>
+    <p>My love, you are the most special part of my life...</p>
+    <div class="nav-btns">
+        <button class="back-btn">⬅️ Back</button>
+        <button class="next-btn">Next ➡️</button>
     </div>
-  </div>
+</div>
 
-  <div class="section" id="section4">
-    <h2>🎁 Your Gift</h2>
-    <img src="gift.gif" alt="Gift" style="max-width: 300px; border-radius: 12px;" />
-    <div class="buttons">
-      <button onclick="prevSection()">Back</button>
-      <button onclick="nextSection()">Next</button>
+<div class="section" id="section5">
+    <h2>Cute Questions 💕</h2>
+    <p>Do you love me more today than yesterday? 😘</p>
+    <div class="nav-btns">
+        <button class="back-btn">⬅️ Back</button>
     </div>
-  </div>
+</div>
 
-  <div class="section" id="section5">
-    <h2>My Love Letter to You 💌</h2>
-    <p>
-      From the moment we met, my world changed. You're my smile, my comfort,
-      and my everything. I promise to always love you, support you, and never
-      stop reminding you how special you are to me. 💗
-    </p>
-    <div class="buttons">
-      <button onclick="prevSection()">Back</button>
-      <button onclick="nextSection()">Next</button>
-    </div>
-  </div>
+<script>
+const sections = document.querySelectorAll('.section');
+let currentSection = 0;
 
-  <div class="section" id="section6">
-    <h2>Some Cute Questions 😚</h2>
-    <ul>
-      <li>When did you first know I was special? 💭</li>
-      <li>What’s your favorite memory with me? 📸</li>
-      <li>Will you promise to be mine forever? 💍</li>
-    </ul>
-    <div class="buttons">
-      <button onclick="prevSection()">Back</button>
-    </div>
-  </div>
+function showSection(index) {
+    sections.forEach((sec, i) => {
+        sec.classList.toggle('active', i === index);
+    });
+}
 
-  <script>
-    const sections = document.querySelectorAll('.section');
-    let currentSection = 0;
-
-    function showSection(index) {
-      sections.forEach((section, i) => {
-        section.classList.toggle('active', i === index);
-      });
-
-      // Apply falling hearts only on section 1 and 4
-      document.getElementById("heartsContainer").style.display =
-        index === 0 || index === 3 ? "block" : "none";
-    }
-
-    function nextSection() {
-      if (currentSection < sections.length - 1) {
-        currentSection++;
-        showSection(currentSection);
-      }
-    }
-
-    function prevSection() {
-      if (currentSection > 0) {
-        currentSection--;
-        showSection(currentSection);
-      }
-    }
-
-    function spawnHearts() {
-      const container = document.getElementById("heartsContainer");
-      setInterval(() => {
-        const heart = document.createElement("span");
-        heart.innerText = "❤️";
-        heart.style.left = Math.random() * 100 + "%";
-        heart.style.fontSize = 16 + Math.random() * 24 + "px";
-        container.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-      }, 300);
-    }
-
-    function revealImages() {
-      const gallery = document.getElementById("gallery");
-      const images = [
-        "img1.jpg",
-        "img2.jpg",
-        "img3.jpg",
-        "img4.jpg"
-      ];
-      let i = 0;
-      const interval = setInterval(() => {
-        if (i < images.length) {
-          const img = document.createElement("img");
-          img.src = images[i];
-          gallery.appendChild(img);
-          i++;
-        } else {
-          clearInterval(interval);
+document.querySelectorAll('.next-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (currentSection < sections.length - 1) {
+            currentSection++;
+            showSection(currentSection);
         }
-      }, 1000);
-    }
+    });
+});
 
-    window.onload = function () {
-      showSection(currentSection);
-      spawnHearts();
-      revealImages();
-    };
-  </script>
+document.querySelectorAll('.back-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (currentSection > 0) {
+            currentSection--;
+            showSection(currentSection);
+        }
+    });
+});
+</script>
+
 </body>
 </html>
