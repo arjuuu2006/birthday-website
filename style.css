@@ -38,8 +38,10 @@ h1, h2 {
 .navigation-buttons {
   margin-top: 2rem;
   display: flex;
+  justify-content: space-between;
   gap: 1.5rem;
-  justify-content: center;
+  width: 100%;
+  max-width: 300px;
 }
 
 button {
@@ -51,6 +53,7 @@ button {
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
+  flex: 1;
 }
 
 button:hover {
@@ -166,5 +169,15 @@ button:hover {
   button {
     font-size: 1rem;
     padding: 0.6rem 1.2rem;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  button {
+    width: 100%;
   }
 }
