@@ -1,122 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday ❤️</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday ❤️</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="floating-hearts" id="hearts-container"></div>
 
-  <button onclick="document.getElementById('bday-audio').play()">💖 Tap to Play Song</button>
-  <audio id="bday-audio" loop>
-    <source src="happy-birthday.mp3" type="audio/mp3">
-  </audio>
+    <!-- Falling Hearts -->
+    <div id="hearts-container"></div>
 
-  <!-- Section 1: Intro -->
-  <div class="section active" id="section1">
-    <h1>Happy Birthday, My Love 💖</h1>
-    <p>I made this little website just for you — because you deserve all the magic! ✨</p>
-    <div class="btn-row">
-      <button onclick="backSection('section0')" style="visibility:hidden;">⬅️ Back</button>
-      <button onclick="nextSection('section2')">Next ➡️</button>
-    </div>
-  </div>
+    <!-- Sections -->
+    <section class="section" id="section1">
+        <h1>Happy Birthday My Love ❤️</h1>
+        <button class="next-btn" onclick="nextSection()">Next</button>
+    </section>
 
-  <!-- Section 2: Images -->
-  <div class="section" id="section2">
-    <img id="img1" src="her.jpg" width="280" style="display:none;">
-    <img id="img2" src="her2.jpg" width="280" style="display:none;">
-    <img id="img3" src="her3.jpg" width="280" style="display:none;">
-    <img id="img4" src="her4.jpg" width="280" style="display:none;">
-    <div class="btn-row">
-      <button onclick="backSection('section1')">⬅️ Back</button>
-      <button onclick="nextSection('section3')">Next ➡️</button>
-    </div>
-  </div>
+    <section class="section hidden" id="section2">
+        <div class="image-gallery">
+            <img src="img1.jpg" alt="Image 1">
+            <img src="img2.jpg" alt="Image 2">
+            <img src="img3.jpg" alt="Image 3">
+            <img src="img4.jpg" alt="Image 4">
+        </div>
+        <div class="navigation">
+            <button onclick="prevSection()">Back</button>
+            <button onclick="nextSection()">Next</button>
+        </div>
+    </section>
 
-  <!-- Section 3: Love Letter -->
-  <div class="section" id="section3">
-    <h2>A Little Note for You ❤️</h2>
-    <p>
-      From the moment we met, my world has become brighter and my heart fuller.<br>
-      You bring joy, laughter, and love into every day of my life.<br>
-      This little website is just a small surprise to say how grateful I am to have you.<br>
-      Happy Birthday, my love — I can't wait to spend many more birthdays by your side. 💫<br><br>
-      Yours forever,<br>
-      Arjun 💌
-    </p>
-    <div class="btn-row">
-      <button onclick="backSection('section2')">⬅️ Back</button>
-      <button onclick="nextSection('section4')">Next ➡️</button>
-    </div>
-  </div>
+    <section class="section hidden" id="section3">
+        <img src="gift.gif" alt="Gift" class="gift">
+        <div class="navigation">
+            <button onclick="prevSection()">Back</button>
+            <button onclick="nextSection()">Next</button>
+        </div>
+    </section>
 
-  <!-- Section 4: Gift -->
-  <div class="section" id="section4">
-    <img src="gift.gif" width="260" alt="Surprise Gift">
-    <p>Tap this gift in your heart 🎁</p>
-    <div class="btn-row">
-      <button onclick="backSection('section3')">⬅️ Back</button>
-      <button onclick="nextSection('section5')">Next ➡️</button>
-    </div>
-  </div>
+    <section class="section hidden" id="section4">
+        <h2>My Love Letter 💌</h2>
+        <p>
+            From the moment I met you, my life has been filled with joy.  
+            You are my everything, my sunshine, my reason to smile.  
+            I love you more than words can ever say ❤️  
+        </p>
+        <div class="navigation">
+            <button onclick="prevSection()">Back</button>
+            <button onclick="nextSection()">Next</button>
+        </div>
+    </section>
 
-  <!-- Section 5: Questions -->
-  <div class="section" id="section5">
-    <h2>Some Questions Just for You 💭</h2>
-    <ul>
-      <li>💕 When did you first realize you liked me?</li>
-      <li>🌹 What’s your favorite moment we've shared?</li>
-      <li>🎶 Which song reminds you of us?</li>
-      <li>🎨 If you could paint one memory with me, which one would it be?</li>
-    </ul>
-    <p>🎂 Thank you for being you. Happy Birthday again, my forever person. 💕</p>
-    <div class="btn-row">
-      <button onclick="backSection('section4')">⬅️ Back</button>
-      <button style="visibility:hidden;">Next ➡️</button>
-    </div>
-  </div>
+    <section class="section hidden" id="section5">
+        <h2>Cute Questions 💕</h2>
+        <p>Will you be mine forever? ❤️</p>
+        <div class="navigation">
+            <button onclick="prevSection()">Back</button>
+        </div>
+    </section>
 
-  <script>
-    function nextSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      if (id === 'section2') revealImages();
-      if (id === 'section1' || id === 'section4') startHearts();
-    }
+    <!-- Music Button -->
+    <button id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
-    function backSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      if (id === 'section1' || id === 'section4') startHearts();
-    }
+    <script>
+        let currentSection = 1;
 
-    function revealImages() {
-      let images = ['img1', 'img2', 'img3', 'img4'];
-      images.forEach((id, index) => {
-        setTimeout(() => {
-          document.getElementById(id).style.display = 'inline-block';
-        }, (index + 1) * 1000);
-      });
-    }
+        function nextSection() {
+            document.getElementById(`section${currentSection}`).classList.add('hidden');
+            currentSection++;
+            document.getElementById(`section${currentSection}`).classList.remove('hidden');
+        }
 
-    function startHearts() {
-      const container = document.getElementById('hearts-container');
-      container.innerHTML = '';
-      for (let i = 0; i < 12; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
-        heart.innerText = '💖';
-        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-        container.appendChild(heart);
-      }
-    }
+        function prevSection() {
+            document.getElementById(`section${currentSection}`).classList.add('hidden');
+            currentSection--;
+            document.getElementById(`section${currentSection}`).classList.remove('hidden');
+        }
 
-    startHearts();
-  </script>
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            if (music.paused) {
+                music.play();
+                btn.textContent = "⏸ Pause Music";
+            } else {
+                music.pause();
+                btn.textContent = "🎵 Play Music";
+            }
+        }
+
+        // Falling Hearts Generator
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+            heart.style.fontSize = (14 + Math.random() * 20) + 'px';
+            document.getElementById('hearts-container').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
